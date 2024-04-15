@@ -13,7 +13,6 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    InputComponent,
     ViewComponent,
     LoginComponent
   ],
