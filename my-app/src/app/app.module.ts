@@ -8,6 +8,9 @@ import { FooterComponent } from './footer/footer.component';
 import { ViewComponent } from './view/view.component';
 import { LoginComponent } from './login/login.component';
 
+import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,9 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
