@@ -7,10 +7,16 @@
 }
 
 li {
-  color: #2a4da3
+  color: #2a4da3;
+  font-size: larger;
+}
+
+.button{
+  font-size: large;
 }
 
 .custom-link{
   padding-left: 5px;
-  color: white;
+  color: #2a4da3;
 }
+
