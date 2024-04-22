@@ -15,6 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TasksComponent } from './tasks/tasks.component';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    TasksComponent
+    TasksComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
