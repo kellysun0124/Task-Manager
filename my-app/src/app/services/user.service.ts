@@ -17,7 +17,7 @@ export class UserService {
   }
 
   login(username: string, password: string): Observable<User> {
-    return this.http.post<User>('http://localhost:3000/login', { username, password }).pipe(
+    return this.http.post<User>('http://44.223.33.61:3000/login', { username, password }).pipe(
       tap(user => {
         // Update BehaviorSubject with the logged-in user data
         this.userSubject.next(user);
