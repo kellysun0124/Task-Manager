@@ -34,14 +34,14 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Hello World!!!!!');
+    res.send('Hello World!');
 });
 
 app.get('/users/:username', async (req, res) => {
     const username = req.params.username;
     try {
         const user = await User.find({ username: username });
-        res.status(200).send( { message: 'User fetched successfully!', data: user });
+        res.status(200).send( user);
     } catch (error) {
         console.log(error);
         res.status(400).send({ message: 'Failed to fetch user' });
@@ -84,7 +84,7 @@ app.get('/tasks/:username', async (req, res) => {
     const username = req.params.username;
     try {
         const tasks = await Task.find({ username: username});
-        res.status(200).send( { message: 'Tasks fetched successfully!', data: tasks });
+        res.status(200).send( tasks);
     } catch (error) {
         console.log(error);
         res.status(500).send({ message: 'Failed to fetch tasks' });
