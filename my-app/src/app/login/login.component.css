@@ -1,0 +1,22 @@
+.mat-card{
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow:none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  color: #2a4da3;
+  font-size: larger;
+}
+
+.button{
+  font-size: large;
+}
+
+.custom-link{
+  padding-left: 5px;
+  color: #2a4da3;
+}
+

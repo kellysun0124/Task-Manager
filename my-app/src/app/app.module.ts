@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card'
 import {MatButtonModule} from '@angular/material/button'
 import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatExpansionModule} from '@angular/material/expansion'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,8 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { LogoutComponent } from './logout/logout.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,8 @@ import { TasksComponent } from './tasks/tasks.component';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    TasksComponent
+    TasksComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,8 @@ import { TasksComponent } from './tasks/tasks.component';
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

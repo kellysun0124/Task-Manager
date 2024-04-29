@@ -7,16 +7,27 @@
 }
 
 li {
-  color: #eab676
+  color: #2a4da3;
+  font-size: large;
 }
 
 .custom-link{
   padding-left: 5px;
-  color: white;
+  color: #2a4da3;
 }
 
 .inputboxes{
   justify-content: center;
   align-content: center;
 }
+
+.button{
+  font-size: large;
+}
+
+.custom-link{
+  padding-left: 5px;
+  color: #2a4da3;
+}
+
 
