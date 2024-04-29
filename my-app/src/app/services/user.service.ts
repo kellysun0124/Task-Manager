@@ -8,6 +8,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class UserService {
+  private baseUrl = 'http://44.223.33.61:3000'
   private userSubject: BehaviorSubject<User>;
 
   constructor(private http: HttpClient) {
@@ -17,7 +18,7 @@ export class UserService {
   }
 
   login(username: string, password: string): Observable<User> {
-    return this.http.post<User>('http://44.223.33.61:3000/login', { username, password }).pipe(
+    return this.http.post<User>(`${environment.apiUrl}login`, { username, password }).pipe(
       tap(user => {
         // Update BehaviorSubject with the logged-in user data
         this.userSubject.next(user);

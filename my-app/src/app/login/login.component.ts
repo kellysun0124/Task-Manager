@@ -26,7 +26,7 @@ export class LoginComponent {
       next: (user) => {
         // Upon successful login
         console.log('Login successful:', user);
-        this.router.navigate(['/dashboard']); // Navigate to the dashboard or appropriate page
+        this.router.navigate(['/tasks']); // Navigate to the dashboard or appropriate page
         this.loading = false; // Turn off the loading indicator
       },
       error: (error) => {
