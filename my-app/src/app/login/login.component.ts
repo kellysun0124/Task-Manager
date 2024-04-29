@@ -1,6 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -12,17 +13,27 @@ export class LoginComponent {
 
   username: string = '';
   password: string = '';
+  loading: boolean = false;
+  errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
-  submitLogin() {
-    this.authService.login(this.username, this.password).subscribe((response) => {
-      if (response.message == "User successfully logged in") {
-        this.router.navigate(['/tasks']);
-        this.authService.saveLoggedInUser(this.username);
-        console.log(response.message);
-      } else {
-        console.error('Login failed:', response.message);
+  submitLogin(): void {
+    this.loading = true;
+    this.errorMessage = ''; // Clear previous error messages if any
+
+    this.userService.login(this.username, this.password).subscribe({
+      next: (user) => {
+        // Upon successful login
+        console.log('Login successful:', user);
+        this.router.navigate(['/dashboard']); // Navigate to the dashboard or appropriate page
+        this.loading = false; // Turn off the loading indicator
+      },
+      error: (error) => {
+        // Handle login failure
+        console.error('Login failed:', error);
+        this.errorMessage = error.message || 'Login failed. Please try again.';
+        this.loading = false; // Turn off the loading indicator
       }
     });
   }
