@@ -18,7 +18,7 @@ export class LoginComponent {
   submitLogin() {
     this.authService.login(this.username, this.password).subscribe((response) => {
       if (response.message == "User successfully logged in") {
-        this.router.navigate(['/user-birds']);
+        this.router.navigate(['/tasks']);
         this.authService.saveLoggedInUser(this.username);
         console.log(response.message);
       } else {
