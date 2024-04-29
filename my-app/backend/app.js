@@ -37,15 +37,19 @@ app.get('/', (req, res) => {
     res.send('Hello World!!!');
 });
 
-app.get('/users/:username', async (req, res) => {
-    const username = req.params.username;
-    try {
-        const user = await User.find({ username: username });
-        res.status(200).send( user);
-    } catch (error) {
-        console.log(error);
-        res.status(400).send({ message: 'Failed to fetch user' });
+app.post('/login', async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  try {
+    const user = await user.findOne({ username: username });
+    if (password != user.password) {
+      return res.status(401).send({ message: 'Invalid credentials' });
     }
+    res.status(200).send( user );
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ message: 'failed to fetch user' });
+  }
 });
 
 app.post('/users', async (req, res) => {
