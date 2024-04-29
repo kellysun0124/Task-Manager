@@ -41,4 +41,5 @@ jobs:
             sudo docker rm task-manager || true
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/task-manager:latest
             sudo docker run -d -p 3000:3000 -p 4200:4200 --name task-manager ${{ secrets.DOCKER_USERNAME }}/task-manager:latest
+            sudo docker image prune -a -f
           EOF
