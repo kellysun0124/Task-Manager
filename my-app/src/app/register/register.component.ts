@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { User } from '../models/user.model';
+import {Router} from "@angular/router";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-register',
@@ -13,25 +16,32 @@ export class RegisterComponent {
   email: string = '';
   phone: string = '';
   password: string = '';
+  errorMessage: string = ''; // For displaying error messages
+  loading: boolean = false; // For showing a loading indicator or disabling the button
 
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router, private userService: UserService) {}
 
-  submitRegistration() {
-    const userData = {
-      userId: this.username,
+  submitRegistration(): void {
+    this.loading = true; // Start loading
+    const user: User = {
+      username: this.username,
       firstName: this.firstname,
       lastName: this.lastname,
       email: this.email,
-      phone: this.phone,
+      phoneNumber: this.phone,
       password: this.password
     };
 
-    this.http.post<any>('http://localhost:3001/register', userData).subscribe({
-      next: (response) => {
-        console.log('Registration successful:', response);
+    this.userService.register(user).subscribe({
+      next: (registeredUser) => {
+        console.log('Registration successful:', registeredUser);
+        this.router.navigate(['/login']); // Navigate to login or another appropriate route
+        this.loading = false; // Stop loading
       },
       error: (error) => {
         console.error('Registration failed:', error);
+        this.errorMessage = error.message || 'Registration failed, please try again later.';
+        this.loading = false; // Stop loading
       }
     });
   }

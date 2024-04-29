@@ -30,4 +30,18 @@ export class UserService {
       })
     );
   }
+
+  register(user: User): Observable<User> {
+    return this.http.post<User>(`${environment.apiUrl}register`, user).pipe(
+      tap(user => {
+        // Update BehaviorSubject with the registered user data
+        this.userSubject.next(user);
+      }),
+      catchError(error => {
+        // Log and handle errors appropriately
+        console.error('Registration error:', error);
+        return throwError(() => new Error('Registration failed, please try again later.'));
+      })
+    );
+  }
 }

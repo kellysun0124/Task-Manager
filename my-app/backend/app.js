@@ -52,35 +52,22 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.post('/users', async (req, res) => {
-    let user;
-    // check if the user already exists
-    const username = req.body.username;
-    if (!username) {
-        return res.status(400).send({ message: '\'username\' is required' });
-    }
-    try {
-        if (await User.findOne({ username: username })) {
-            return res.status(409).send({ message: 'User already exists' });
-        }
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({ message: 'Internal Server Error' });
-    }
-
-    try {
-        user = new User(req.body);
-    } catch (error) {
-        console.log(error);
-        res.status(400).send({ message: 'Invalid user data' });
-    }
-    try {
-        await user.save();
-        res.status(201).send({ message: 'User added successfully!', data: user });
-    } catch (error) {
-        console.log(error);
-        res.status(400).send({ message: 'Failed to add user' });
-    }
+app.post('/register', async (req, res) => {
+  let user;
+  console.log('new request: ', req.body)
+  try {
+      user = new User(req.body);
+  } catch (error) {
+      console.log(error);
+      res.status(400).send({ message: 'Invalid user data' });
+  }
+  try {
+      await user.save();
+      res.status(201).send({ message: 'User added successfully!', data: user });
+  } catch (error) {
+      console.log(error);
+      res.status(400).send({ message: 'Failed to add user' });
+  }
 });
 
 app.get('/tasks/:username', async (req, res) => {
