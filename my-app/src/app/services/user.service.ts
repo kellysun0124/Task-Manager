@@ -16,10 +16,7 @@ export class UserService {
   }
 
   login(username: string, password: string) {
-    const url = `${environment.apiUrl}login`;
-    const body = { username, password };
-
-    return this.http.post(url, body).pipe(
+    return this.http.post(`${environment.apiUrl}login`, { username, password }).pipe(
       catchError(error => {
         console.log('Login error:', error);
         return throwError(() => error);
@@ -29,12 +26,9 @@ export class UserService {
 
   register(user: User): Observable<User> {
     return this.http.post<User>(`${environment.apiUrl}register`, user).pipe(
-      tap(user => {
-        this.userSubject.next(user);
-      }),
       catchError(error => {
-        console.error('Registration error:', error);
-        return throwError(() => new Error('Registration failed, please try again later.'));
+        console.log('Registration error:', error);
+        return throwError(() => error);
       })
     );
   }

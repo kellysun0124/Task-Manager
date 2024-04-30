@@ -7,7 +7,7 @@ import {UserService} from "../services/user.service";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css', '../app.component.css']
 })
 export class RegisterComponent {
   username: string = '';
@@ -22,7 +22,11 @@ export class RegisterComponent {
   constructor(private router: Router, private userService: UserService) {}
 
   submitRegistration(): void {
-    this.loading = true; // Start loading
+    if (!this.username || !this.password) {
+      this.errorMessage = 'Username and password are required.';
+      return;
+    }
+    this.loading = true;
     const user: User = {
       username: this.username,
       firstName: this.firstname,
@@ -35,13 +39,17 @@ export class RegisterComponent {
     this.userService.register(user).subscribe({
       next: (registeredUser) => {
         console.log('Registration successful:', registeredUser);
-        this.router.navigate(['/login']); // Navigate to login or another appropriate route
-        this.loading = false; // Stop loading
+        this.router.navigate(['/login']);
+        this.loading = false;
       },
       error: (error) => {
         console.error('Registration failed:', error);
-        this.errorMessage = error.message || 'Registration failed, please try again later.';
-        this.loading = false; // Stop loading
+        if (error.status === 409) {
+          this.errorMessage = 'Username already exists. Please try again.';
+        } else {
+          this.errorMessage = 'Registration failed. Please try again.';
+        }
+        this.loading = false;
       }
     });
   }

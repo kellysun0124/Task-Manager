@@ -69,7 +69,11 @@ app.post('/register', async (req, res) => {
       res.status(201).send({ message: 'User added successfully!', data: user });
   } catch (error) {
       console.log(error);
-      res.status(400).send({ message: 'Failed to add user' });
+      if (error.code === 11000) {
+        return res.status(409).send({ message: 'User already exists' });
+      } else {
+        res.status(500).send({ message: 'Failed to add user' });
+      }
   }
 });
 
