@@ -2,3 +2,22 @@
   text-align: center;
   color: #2a4da3;
 }
+
+app-task-create mat-card button {
+  width: 50%;
+  margin: 10px auto;
+  vertical-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.flex-container {
+  display: flex;
+  height: 100%;
+}
+
+app-task-create, app-task-list {
+  flex: 1;
+}

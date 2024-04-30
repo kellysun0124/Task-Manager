@@ -1,0 +1,21 @@
+<mat-card *ngIf="!loading; else loadingTemplate">
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="title">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="dueDate">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput rows="15" [(ngModel)]="description"></textarea>
+  </mat-form-field>
+  <button mat-raised-button (click)="onCreateTask()">Post text</button>
+  <p *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </p>
+</mat-card>
+
+<ng-template #loadingTemplate>
+  <div class="loading-spinner">
+    <div></div>
+  </div>
+</ng-template>

@@ -82,7 +82,7 @@ app.get('/tasks/:username', async (req, res) => {
     const username = req.params.username;
     try {
         const tasks = await Task.find({ username: username});
-        res.status(200).send( tasks);
+        res.status(200).send( { message: 'Tasks fetched successfully!', tasks: tasks });
     } catch (error) {
         console.log(error);
         res.status(500).send({ message: 'Failed to fetch tasks' });

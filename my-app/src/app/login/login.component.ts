@@ -1,6 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
 import {UserService} from "../services/user.service";
 
 @Component({
@@ -35,7 +34,6 @@ export class LoginComponent {
       },
       error: (error) => {
         console.error('Login failed:', error);
-        this.errorMessage = error.message || 'Login failed. Please try again.';
         if (error.status === 401) {
           this.errorMessage = 'Invalid login. Please try again.';
         } else if (error.status === 404) {
