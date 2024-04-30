@@ -1,12 +1,12 @@
 mat-toolbar{
-  background-color: #2a4ca39e; /* Set background color */
-  height: 70px; /* Set toolbar height */
-  display: flex; /* Use flexbox layout */
+  background-color: #2a4ca39e;
+  height: 70px;
+  display: flex;
 }
 .navbar-nav {
   display: flex;
   flex-direction: row;
-  list-style-type: none; /* Removes default list style */
+  list-style-type: none;
   display: flex;
   justify-content: center;
 }
@@ -14,7 +14,7 @@ mat-toolbar{
   display: block;
   padding: 20px;
   font-size: 26px;
-  color: white; /* Set text color */
+  color: white;
 }
 
 .nav-item:hover {

@@ -1,0 +1,24 @@
+mat-card{
+background-color: #d5def5;
+padding-top: 12px;
+}
+
+mat-form-field{
+  font-size: 22px;
+}
+
+mat-card button{
+  display: block;
+  background-color: #2a4ca39e;
+  font-size: 20px;
+  color: white;
+  width: 15%;
+  align-content: center;
+  padding: 0.5% 0.5%;
+}
+
+mat-card button:hover {
+  background-color: #2a4da3; /* Change background color on hover */
+}
+
+

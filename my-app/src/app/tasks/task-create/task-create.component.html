@@ -1,14 +1,14 @@
 <mat-card *ngIf="!loading; else loadingTemplate">
   <mat-form-field>
-    <input matInput type="text" [(ngModel)]="title">
+    <input matInput type="text" [(ngModel)]="title" placeholder="Title">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" [(ngModel)]="dueDate">
+    <input matInput type="text" [(ngModel)]="dueDate" placeholder="Due Date">
   </mat-form-field>
   <mat-form-field>
-    <textarea matInput rows="15" [(ngModel)]="description"></textarea>
+    <textarea matInput rows="15" [(ngModel)]="description" placeholder="Task"></textarea>
   </mat-form-field>
-  <button mat-raised-button (click)="onCreateTask()">Post text</button>
+  <button mat-raised-button (click)="onCreateTask()">Post Text</button>
   <p *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </p>
