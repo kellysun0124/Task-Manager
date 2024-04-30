@@ -8,37 +8,31 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = 'http://44.223.33.61:3000'
   private userSubject: BehaviorSubject<User>;
 
   constructor(private http: HttpClient) {
-    // Assuming the initial user does not need username and password initialized here
-    const defaultUser: Partial<User> = {}; // Now empty since password should not be included
+    const defaultUser: Partial<User> = {};
     this.userSubject = new BehaviorSubject<User>(defaultUser as User);
   }
 
-  login(username: string, password: string): Observable<User> {
-    return this.http.post<User>(`${environment.apiUrl}login`, { username, password }).pipe(
-      tap(user => {
-        // Update BehaviorSubject with the logged-in user data
-        this.userSubject.next(user);
-      }),
+  login(username: string, password: string) {
+    const url = `${environment.apiUrl}login`;
+    const body = { username, password };
+
+    return this.http.post(url, body).pipe(
       catchError(error => {
-        // Log and handle errors appropriately
-        console.error('Login error:', error);
-        return throwError(() => new Error('Login failed, please try again later.'));
+        console.log('Login error:', error);
+        return throwError(() => error);
       })
-    );
+    )
   }
 
   register(user: User): Observable<User> {
     return this.http.post<User>(`${environment.apiUrl}register`, user).pipe(
       tap(user => {
-        // Update BehaviorSubject with the registered user data
         this.userSubject.next(user);
       }),
       catchError(error => {
-        // Log and handle errors appropriately
         console.error('Registration error:', error);
         return throwError(() => new Error('Registration failed, please try again later.'));
       })

@@ -1,7 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const fs = require('fs');
-
 const Task = require('./Models/Task');
 const User = require('./Models/User');
 
@@ -38,18 +36,23 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  const { username, password } = req.body;
+  let user;
   try {
-    const user = await User.findOne({ username: username });
-    if (password != user.password) {
-      return res.status(401).send({ message: 'Invalid credentials' });
-    }
-    res.status(200).send( user );
+    user = await User.findOne({ username: username });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(400).send({ message: 'failed to fetch user' });
   }
+  if (!user) {
+    console.log(`User not found: ${username}`);
+    return res.status(404).send({ message: 'User not found' });
+  }
+  if (password !== user.password) {
+    console.log(`Invalid credentials for user: ${username}`);
+    return res.status(401).send({ message: 'Invalid credentials' });
+  }
+  res.status(200).send( user );
 });
 
 app.post('/register', async (req, res) => {
