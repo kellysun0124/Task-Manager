@@ -5,7 +5,6 @@
         <p> {{task.title}}: {{ task.dueDate | date: 'shortDate' }} </p>
       </mat-expansion-panel-header>
       <p>{{task.description}}</p>
-      <mat-action-row></mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
   <p class="info-text mat-body" *ngIf="tasks.length <=0 "> No tasks yet</p>

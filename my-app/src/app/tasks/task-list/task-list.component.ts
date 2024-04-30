@@ -22,19 +22,19 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     this.tasksSubscription = this.taskService.getTasks().subscribe({
       next: (tasks) => {
-        this.tasks = [...tasks];
+        this.tasks = tasks;
         this.loading = false;
       },
       error: (error) => {
         console.error('Task list error:', error);
-        this.errorMessage = 'Failed to load tasks. Please try again.';
+        if (error.status === 404) {
+          this.errorMessage = 'Please login first';
+        } else {
+          this.errorMessage = 'Failed to load tasks. Please try again.';
+        }
         this.loading = false;
       }
     })
-
-    // this.tasksSubscription = this.taskService.getTasks().subscribe((tasks: Task[]) => {
-    //   this.tasks = [...tasks];
-    // });
   }
 
   ngOnDestroy() {
