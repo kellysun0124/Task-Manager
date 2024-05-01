@@ -36,7 +36,6 @@ jobs:
 
       - name: Deploy Docker Container on EC2
         run: |
-          echo ${{ secrets.USERNAME }}@${{ secrets.HOST }}
           ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
             sudo docker stop task-manager || true
             sudo docker rm task-manager || true
