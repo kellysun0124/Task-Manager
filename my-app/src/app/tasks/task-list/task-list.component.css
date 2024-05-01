@@ -1,10 +1,26 @@
-.info-text mat-body{
-  font-size: 22px;
-  color: #2a4da3;
+mat-expansion-panel-header{
+  background-color: #e7ecf8;
+  border-bottom: 2px solid #2a4ca39e;
 }
 
-mat-expansion-panel-header{
-  background-color: #2a4da3;
+/* Style for title */
+mat-expansion-panel-header p{
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+/* Style for description */
+mat-expansion-panel p{
+  margin-top: 10px;
+  font-size: 22px;
+}
+
+.info-text.mat-body{
+  font-size: 22px;
+  color: #2a4da3;
+  margin-top: 10px;
 }
 
 .error-message{

@@ -1,7 +1,9 @@
 mat-card{
-  background-color: #d5def5;
+  background-color: #e7ecf8;
   padding-top: 5px;
-  border: 2px solid #2a4da3;
+  border: 3px solid #2a4da3;
+  margin-right: 15px;
+  margin-left: 10px;
 }
 
 mat-form-field{
@@ -10,16 +12,16 @@ mat-form-field{
 }
 
 .title{
-  background-color: #d5def5;
+  background-color: #e7ecf8;
   padding-top: 10px;
 }
 
 .dueDate{
-  background-color: #d5def5;
+  background-color: #e7ecf8;
 }
 
 .description{
-  background-color: #d5def5;
+  background-color: #e7ecf8;
 }
 
 mat-card button{
@@ -35,5 +37,6 @@ mat-card button{
 mat-card button:hover {
   background-color: #2a4da3; /* Change background color on hover */
 }
+
 
 
