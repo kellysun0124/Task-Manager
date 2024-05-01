@@ -69,6 +69,7 @@ app.post('/register', async (req, res) => {
       res.status(201).send({ message: 'User added successfully!', data: user });
   } catch (error) {
       console.log(error);
+      // 11000 is the code for duplicate key error
       if (error.code === 11000) {
         return res.status(409).send({ message: 'User already exists' });
       } else {
