@@ -6,7 +6,7 @@
     <input matInput type="text" [(ngModel)]="dueDate" placeholder="Due Date">
   </mat-form-field>
   <mat-form-field class="description">
-    <textarea matInput rows="15" [(ngModel)]="description" placeholder="Manage your tasks.."></textarea>
+    <textarea matInput rows="12" [(ngModel)]="description" placeholder="Manage your tasks.."></textarea>
   </mat-form-field>
   <button mat-raised-button (click)="onCreateTask()">Post Text</button>
   <p *ngIf="errorMessage" class="error-message">
