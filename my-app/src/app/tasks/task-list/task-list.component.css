@@ -1,6 +1,12 @@
+mat-card{
+  padding-right: 20px;
+  padding-left: 30px;
+}
+
 mat-expansion-panel-header{
   background-color: #e7ecf8;
   border-bottom: 2px solid #2a4ca39e;
+
 }
 
 /* Style for title */
@@ -9,6 +15,7 @@ mat-expansion-panel-header p{
   font-weight: bold;
   text-transform: capitalize;
   margin: 0;
+  text-align: center;
 }
 
 /* Style for description */

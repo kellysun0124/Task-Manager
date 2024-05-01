@@ -2,7 +2,7 @@ mat-card{
   background-color: #e7ecf8;
   padding-top: 5px;
   border: 3px solid #2a4da3;
-  margin-right: 15px;
+  margin-right: 20px;
   margin-left: 10px;
 }
 
@@ -36,6 +36,12 @@ mat-card button{
 
 mat-card button:hover {
   background-color: #2a4da3; /* Change background color on hover */
+}
+
+.error-message{
+  font-size: 18px;
+  padding-left: 8px;
+  color: red;
 }
 
 
