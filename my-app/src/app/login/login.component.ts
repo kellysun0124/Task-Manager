@@ -1,12 +1,11 @@
 import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
 import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css', '../app.component.css']
 })
 export class LoginComponent {
   @HostBinding('attr.data-component-id') componentId = 'login';
@@ -19,21 +18,30 @@ export class LoginComponent {
   constructor(private router: Router, private userService: UserService) {}
 
   submitLogin(): void {
+    if (!this.username || !this.password) {
+      this.errorMessage = 'Username and password are required.';
+      return;
+    }
+
     this.loading = true;
-    this.errorMessage = ''; // Clear previous error messages if any
+    this.errorMessage = '';
 
     this.userService.login(this.username, this.password).subscribe({
       next: (user) => {
-        // Upon successful login
         console.log('Login successful:', user);
-        this.router.navigate(['/dashboard']); // Navigate to the dashboard or appropriate page
-        this.loading = false; // Turn off the loading indicator
+        this.router.navigate(['/tasks']);
+        this.loading = false;
       },
       error: (error) => {
-        // Handle login failure
         console.error('Login failed:', error);
-        this.errorMessage = error.message || 'Login failed. Please try again.';
-        this.loading = false; // Turn off the loading indicator
+        if (error.status === 401) {
+          this.errorMessage = 'Invalid login. Please try again.';
+        } else if (error.status === 404) {
+          this.errorMessage = 'Username not found. Please try again.';
+        } else {
+          this.errorMessage = 'Login failed. Please try again.';
+        }
+        this.loading = false;
       }
     });
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject, catchError, Observable, tap, throwError} from 'rxjs';
+import {BehaviorSubject, catchError, map, Observable, tap, throwError} from 'rxjs';
 import {User} from "../models/user.model";
 import {environment} from "../../environments/environment";
 
@@ -8,24 +8,27 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class UserService {
-  private userSubject: BehaviorSubject<User>;
+  public user: User = { username: '', password: '' };
 
-  constructor(private http: HttpClient) {
-    // Assuming the initial user does not need username and password initialized here
-    const defaultUser: Partial<User> = {}; // Now empty since password should not be included
-    this.userSubject = new BehaviorSubject<User>(defaultUser as User);
-  }
+  constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<User> {
-    return this.http.post<User>('http://localhost:3000/login', { username, password }).pipe(
-      tap(user => {
-        // Update BehaviorSubject with the logged-in user data
-        this.userSubject.next(user);
+  login(username: string, password: string) {
+    return this.http.post(`${environment.apiUrl}login`, { username, password }).pipe(
+      tap(response => {
+        Object.assign(this.user, response);
       }),
       catchError(error => {
-        // Log and handle errors appropriately
-        console.error('Login error:', error);
-        return throwError(() => new Error('Login failed, please try again later.'));
+        console.log('Login error:', error);
+        return throwError(() => error);
+      })
+    )
+  }
+
+  register(user: User): Observable<User> {
+    return this.http.post<User>(`${environment.apiUrl}register`, user).pipe(
+      catchError(error => {
+        console.log('Registration error:', error);
+        return throwError(() => error);
       })
     );
   }

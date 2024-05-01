@@ -1,0 +1,36 @@
+mat-card{
+  padding-right: 20px;
+  padding-left: 40px;
+}
+
+mat-expansion-panel-header{
+  background-color: #e7ecf8;
+  border-bottom: 2px solid #2a4ca39e;
+
+}
+
+/* Style for title */
+mat-expansion-panel-header p{
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin: 0;
+  text-align: center;
+}
+
+/* Style for description */
+mat-expansion-panel p{
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+.info-text.mat-body{
+  font-size: 18px;
+  color: #2a4da3;
+  margin-top: 8px;
+}
+
+.error-message{
+  color: red;
+}
+

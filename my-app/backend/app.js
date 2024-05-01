@@ -1,7 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const fs = require('fs');
-
 const Task = require('./Models/Task');
 const User = require('./Models/User');
 
@@ -38,49 +36,46 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  const { username, password } = req.body;
+  let user;
   try {
-    const user = await User.findOne({ username: username });
-    if (password != user.password) {
-      return res.status(401).send({ message: 'Invalid credentials' });
-    }
-    res.status(200).send( user );
+    user = await User.findOne({ username: username });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(400).send({ message: 'failed to fetch user' });
   }
+  if (!user) {
+    console.log(`User not found: ${username}`);
+    return res.status(404).send({ message: 'User not found' });
+  }
+  if (password !== user.password) {
+    console.log(`Invalid credentials for user: ${username}`);
+    return res.status(401).send({ message: 'Invalid credentials' });
+  }
+  res.status(200).send( user );
 });
 
-app.post('/users', async (req, res) => {
-    let user;
-    // check if the user already exists
-    const username = req.body.username;
-    if (!username) {
-        return res.status(400).send({ message: '\'username\' is required' });
-    }
-    try {
-        if (await User.findOne({ username: username })) {
-            return res.status(409).send({ message: 'User already exists' });
-        }
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({ message: 'Internal Server Error' });
-    }
-
-    try {
-        user = new User(req.body);
-    } catch (error) {
-        console.log(error);
-        res.status(400).send({ message: 'Invalid user data' });
-    }
-    try {
-        await user.save();
-        res.status(201).send({ message: 'User added successfully!', data: user });
-    } catch (error) {
-        console.log(error);
-        res.status(400).send({ message: 'Failed to add user' });
-    }
+app.post('/register', async (req, res) => {
+  let user;
+  console.log('new request: ', req.body)
+  try {
+      user = new User(req.body);
+  } catch (error) {
+      console.log(error);
+      res.status(400).send({ message: 'Invalid user data' });
+  }
+  try {
+      await user.save();
+      res.status(201).send({ message: 'User added successfully!', data: user });
+  } catch (error) {
+      console.log(error);
+      // 11000 is the code for duplicate key error
+      if (error.code === 11000) {
+        return res.status(409).send({ message: 'User already exists' });
+      } else {
+        res.status(500).send({ message: 'Failed to add user' });
+      }
+  }
 });
 
 app.get('/tasks/:username', async (req, res) => {
@@ -88,7 +83,7 @@ app.get('/tasks/:username', async (req, res) => {
     const username = req.params.username;
     try {
         const tasks = await Task.find({ username: username});
-        res.status(200).send( tasks);
+        res.status(200).send( { message: 'Tasks fetched successfully!', tasks: tasks });
     } catch (error) {
         console.log(error);
         res.status(500).send({ message: 'Failed to fetch tasks' });

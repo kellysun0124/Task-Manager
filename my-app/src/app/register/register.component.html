@@ -1,7 +1,6 @@
 <h1 class="title">Register</h1>
 
-<br>
-<mat-card class="mat-card">
+<mat-card class="mat-card" *ngIf="!loading; else loadingTemplate">
 
   <form (ngSubmit)="submitRegistration()">
 
@@ -50,12 +49,22 @@
           </div>
           <br>
 
+        <li *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </li>
+        <br>
         <div>
           <br>
-          <li id="regButton">  <button class="button" type="submit" routerLink="/login">Register</button>
+          <li id="regButton">  <button class="button" type="submit">Register</button>
             <a class="nav-item nav-link custom-link" routerLink="/login">Already have an account? Login here!</a>
           </li>
         </div>
       </ul>
   </form>
 </mat-card>
+
+<ng-template #loadingTemplate>
+  <div class="loading-spinner">
+    <div></div>
+  </div>
+</ng-template>

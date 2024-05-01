@@ -1,0 +1,48 @@
+mat-card{
+  background-color: #e7ecf8;
+  padding-top: 5px;
+  border: 3px solid #2a4da3;
+  margin-right: 40px;
+  margin-left: 20px;
+}
+
+mat-form-field{
+  font-size: 20px;
+  color: #2a4da3;
+}
+
+.title{
+  background-color: #e7ecf8;
+  padding-top: 10px;
+}
+
+.dueDate{
+  background-color: #e7ecf8;
+}
+
+.description{
+  background-color: #e7ecf8;
+}
+
+mat-card button{
+  display: block;
+  background-color: #2a4ca39e;
+  font-size: 18px;
+  color: white;
+  width: 15%;
+  align-content: center;
+  padding: 0.4% 0.4%;
+}
+
+mat-card button:hover {
+  background-color: #2a4da3; /* Change background color on hover */
+}
+
+.error-message{
+  font-size: 18px;
+  padding-left: 8px;
+  color: red;
+}
+
+
+

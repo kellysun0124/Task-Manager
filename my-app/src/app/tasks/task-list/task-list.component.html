@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-accordion displayMode="default" [multi]="true" [hideToggle]="false" *ngIf="tasks.length > 0">
+    <mat-expansion-panel [hideToggle]="false" *ngFor="let task of tasks">
+      <mat-expansion-panel-header>
+        <p> {{task.title}}: {{ task.dueDate | date: 'shortDate' }} </p>
+      </mat-expansion-panel-header>
+      <p>{{task.description}}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <p class="info-text mat-body" *ngIf="tasks.length <=0 "> No tasks yet</p>
+  <p *ngIf="errorMessage" class="error-message">{{errorMessage}}</p>
+</mat-card>
