@@ -1,10 +1,25 @@
 mat-card{
-background-color: #d5def5;
-padding-top: 12px;
+  background-color: #d5def5;
+  padding-top: 5px;
+  border: 2px solid #2a4da3;
 }
 
 mat-form-field{
   font-size: 22px;
+  color: #2a4da3;
+}
+
+.title{
+  background-color: #d5def5;
+  padding-top: 10px;
+}
+
+.dueDate{
+  background-color: #d5def5;
+}
+
+.description{
+  background-color: #d5def5;
 }
 
 mat-card button{
