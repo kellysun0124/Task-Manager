@@ -1,0 +1,13 @@
+.info-text mat-body{
+  font-size: 22px;
+  color: #2a4da3;
+}
+
+mat-expansion-panel-header{
+  background-color: #2a4da3;
+}
+
+.error-message{
+  color: red;
+}
+
