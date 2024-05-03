@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  scale: 80%;
 }
 
 li {
@@ -35,4 +36,12 @@ li {
   color: #2a4da3;
 }
 
+mat-form-field{
+  width: 75%;
+  color: #2a4da3;
+}
+
+input{
+  color:white;
+}
 

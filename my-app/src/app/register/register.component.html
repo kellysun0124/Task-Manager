@@ -6,46 +6,63 @@
 
       <ul style="list-style-type:none;">
           <div>
-            <li>First</li>
             <div class="inputboxes">
-              <li><input type="text" name="firstname" [(ngModel)]="firstname" id="firstname"></li>
+              <mat-form-field>
+                <li><input matInput type="text" name="firstname" [(ngModel)]="firstname" id="firstname"></li>
+                <mat-label>First</mat-label>
+              </mat-form-field>
             </div>
             <br>
 
           </div>
 
           <div>
-            <li>Last</li>
-            <li><input type="text" name="lastname" [(ngModel)]="lastname" id="lastname">
-            </li>
+            <div class="inputboxes">
+              <mat-form-field>
+                <li><input matInput type="text" name="lastname" [(ngModel)]="lastname" id="lastname"></li>
+                <mat-label>Last</mat-label>
+              </mat-form-field>
+            </div>
           </div>
           <br>
 
           <div>
-            <li>Username</li>
-            <li><input type="text" name="username" [(ngModel)]="username" id="username">
-            </li>
+            <div class="inputboxes">
+              <mat-form-field>
+                <li><input matInput type="text" name="username" [(ngModel)]="username" id="username"></li>
+                <mat-label>Username</mat-label>
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+
+
+            <div class="inputboxes">
+              <mat-form-field>
+                <li><input matInput type="text" name="password" [(ngModel)]="password" id="password"></li>
+                <mat-label>Password</mat-label>
+              </mat-form-field>
+            </div>
+
+          <br>
+
+          <div>
+            <div class="inputboxes">
+              <mat-form-field>
+                <li><input matInput type="text" name="email" [(ngModel)]="email" id="email"></li>
+                <mat-label>Email</mat-label>
+              </mat-form-field>
+            </div>
           </div>
           <br>
 
           <div>
-            <li>Password</li>
-            <li><input type="text" name="password" [(ngModel)]="password" id="password">
-            </li>
-          </div>
-          <br>
-
-          <div>
-            <li>Email</li>
-            <li><input type="text" name="email" [(ngModel)]="email" id="email">
-            </li>
-          </div>
-          <br>
-
-          <div>
-            <li>Phone Number</li>
-            <li><input type="text" name="phone" [(ngModel)]="phone" id="phone">
-            </li>
+            <div class="inputboxes">
+              <mat-form-field>
+                <li><input matInput type="text" name="phone" [(ngModel)]="phone" id="phone"></li>
+                <mat-label>Phone Number</mat-label>
+              </mat-form-field>
+            </div>
           </div>
           <br>
 
@@ -55,7 +72,7 @@
         <br>
         <div>
           <br>
-          <li id="regButton">  <button class="button" type="submit">Register</button>
+          <li id="regButton">  <button mat-raised-button class="button" type="submit">Register</button>
             <a class="nav-item nav-link custom-link" routerLink="/login">Already have an account? Login here!</a>
           </li>
         </div>
